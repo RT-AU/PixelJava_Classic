@@ -1,6 +1,7 @@
-package main;
+package main.java.mainframe;
 
-import entity.Player;
+import main.java.entity.Player;
+import main.java.tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +23,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyInput keyInput = new KeyInput();
     Thread gameThread;
+
+    //CREATE WORLD
+    TileManager tileManager = new TileManager(this);
 
     //CREATE PLAYER
     Player player = new Player(this, keyInput);
@@ -84,6 +88,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D)OriginalGraphics;
 
+        tileManager.draw(graphics2D);
         player.draw(this, graphics2D);
 
         graphics2D.dispose();
@@ -92,5 +97,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     public int getTileSize() {
         return tileSize;
+    }
+
+    public int getMaxScreenX() {
+        return maxScreenX;
+    }
+
+    public int getMaxScreenY() {
+        return maxScreenY;
     }
 }
