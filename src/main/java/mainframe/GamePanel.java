@@ -8,10 +8,10 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
     // SCREEN SETTINGS
-    final int originalTitleSize = 16; // 16x16 tile default size of player character, tiles, etc
-    final int scale = 3; // scale tiles up to x times - can be edited later using drop down?
+    final int originalTileSize = 16; // 16x16 tile default size of player character, tiles, etc
+    final double scale = 1.38; // scale tiles up to x times - can be edited later using drop down?
 
-    final int tileSize = originalTitleSize * scale; // actual tile size
+    final int tileSize = (int)(originalTileSize * scale); // actual tile size
 
     final int maxScreenX = 16; // 4 by 3
     final int maxScreenY = 12;
@@ -19,25 +19,25 @@ public class GamePanel extends JPanel implements Runnable {
     final int screenHeight = tileSize * maxScreenY; // 576 pixels
 
     //SET GAME FRAMES PER SECOND
-    float fps = 60f;
+    float fps = 30f;
 
-    KeyInput keyInput = new KeyInput();
+    KeyInput keyInput;
     Thread gameThread;
+    TileManager tileManager;
+    Player player;
 
-    //CREATE WORLD
-    TileManager tileManager = new TileManager(this);
-
-    //CREATE PLAYER
-    Player player = new Player(this, keyInput);
-
-
-    public GamePanel() {
+    public GamePanel(KeyInput keyInput) {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
+        this.keyInput = keyInput;
 
         this.addKeyListener(keyInput); // allows gamepanel to recognise key input
         this.setFocusable(true);
+        //CREATE WORLD
+        tileManager = new TileManager(this);
+        //INITIALISE PLAYER
+        player = new Player(this, keyInput);
 
     }
 
@@ -105,5 +105,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     public int getMaxScreenY() {
         return maxScreenY;
+    }
+
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
+    public int getScreenHeight() {
+        return screenHeight;
     }
 }

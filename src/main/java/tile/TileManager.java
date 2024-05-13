@@ -30,10 +30,15 @@ public class TileManager {
             tile[0] = new Tile();
             tile[0].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/tiles/grass.png"))));
             tile[1] = new Tile();
-            tile[1].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/tiles/wall.png"))));
+            tile[1].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/tiles/grass1.png"))));
             tile[2] = new Tile();
-            tile[2].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/tiles/water.png"))));
-
+            tile[2].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/tiles/wall.png"))));
+            tile[3] = new Tile();
+            tile[3].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/tiles/water.png"))));
+            tile[4] = new Tile();
+            tile[4].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/tiles/water1.png"))));
+            tile[5] = new Tile();
+            tile[5].setImage(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/tiles/water2.png"))));
         }catch(IOException e){
             throw new RuntimeException(e);
         }

@@ -60,7 +60,7 @@ public class Player extends Entity {
             }
 
             incrementSpriteAnim(true);
-            if(getSpriteAnim() > 12) { // Player sprite changes every X frames
+            if(getSpriteAnim() > 5) { // Player sprite changes every X frames
                 if(getSpriteNum() == 1) setSpriteNum(2);
                 else if(getSpriteNum() == 2) setSpriteNum(1);
                 incrementSpriteAnim(false);
