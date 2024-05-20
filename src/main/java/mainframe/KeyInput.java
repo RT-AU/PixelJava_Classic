@@ -13,7 +13,7 @@ public class KeyInput implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) { // Detect when a key is pressed
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W){
             upPressed = true;
@@ -30,7 +30,7 @@ public class KeyInput implements KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) { // Detect when a key is released
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W){
             upPressed = false;

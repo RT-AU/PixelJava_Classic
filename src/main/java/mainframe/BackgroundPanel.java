@@ -7,15 +7,15 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class BackgroundPanel extends JPanel implements Runnable{
-    final int originalTileSize = 1; // 16x16 tile default size of player character, tiles, etc
-    final int scale = 6; // scale tiles up to x times - can be edited later using drop down?
-
+    // Set dimensions for game console background tile/image
+    final int originalTileSize = 1;
+    final int scale = 6;
     final int tileSize = originalTileSize * scale; // actual tile size
 
-    final int maxScreenX = 96; // 4 by 3
+    final int maxScreenX = 96;
     final int maxScreenY = 128;
-    final int screenWidth = tileSize * maxScreenX; // 768 pixels
-    final int screenHeight = tileSize * maxScreenY; // 576 pixels
+    final int screenWidth = tileSize * maxScreenX;
+    final int screenHeight = tileSize * maxScreenY;
 
     KeyInput keyInput;
     Image img;
@@ -73,7 +73,7 @@ public class BackgroundPanel extends JPanel implements Runnable{
         }
     }
 
-
+    // Update for game console button presses, which display which buttons the player has pressed
     public void update() {
         try {
             if(keyInput.upPressed){
@@ -85,10 +85,10 @@ public class BackgroundPanel extends JPanel implements Runnable{
             else if(keyInput.leftPressed){
                 img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/background/PJC-LEFT.png")));
             }
-            else if(keyInput.rightPressed){ // right pressed
+            else if(keyInput.rightPressed){
                 img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/background/PJC-RIGHT.png")));
             }
-            else {
+            else { // if no key is being pressed, show default game console
                 img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/background/PJC.png")));
             }
         } catch (IOException e) {
@@ -96,17 +96,11 @@ public class BackgroundPanel extends JPanel implements Runnable{
         }
     }
 
+    // Draw graphics for the game console
     public void paintComponent(Graphics OriginalGraphics) {
         super.paintComponent(OriginalGraphics);
-
         Graphics2D graphics2D = (Graphics2D)OriginalGraphics;
-
-
-            graphics2D.drawImage(img, 0, 0, screenWidth, screenHeight, this);
-
-
-        // draw here?
-
+        graphics2D.drawImage(img, 0, 0, screenWidth, screenHeight, this);
         graphics2D.dispose();
     }
 

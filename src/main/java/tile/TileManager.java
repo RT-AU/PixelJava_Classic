@@ -1,10 +1,6 @@
 package main.java.tile;
 
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import main.java.mainframe.GamePanel;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.*;
@@ -19,7 +15,9 @@ public class TileManager {
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
-        tile = new Tile[10];
+
+        tile = new Tile[6]; // Adjust to match number of tiles present in game
+
         mapTileNum = new int[gamePanel.getMaxScreenX()][gamePanel.getMaxScreenY()];
         getTileImage();
         loadMap("/main/resources/assets/maps/map00.txt");
@@ -68,13 +66,12 @@ public class TileManager {
                     y++;
                 }
             }
-            //bufferedReader.close();
-
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    // Draw game map graphics
     public void draw (Graphics2D graphics2D){
 
         int col = 0;
@@ -84,7 +81,6 @@ public class TileManager {
 
         while (col < gamePanel.getMaxScreenX() && row < gamePanel.getMaxScreenY()){
             int tileNum = mapTileNum[col][row];
-
 
             graphics2D.drawImage(tile[tileNum].getImage(), x, y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
             col++;
@@ -97,13 +93,5 @@ public class TileManager {
                 y += gamePanel.getTileSize();
             }
         }
-
-
-
-
-
-//        graphics2D.drawImage(tile[0].getImage(), 0, 0, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
-//        graphics2D.drawImage(tile[1].getImage(), 48, 0, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
-//        graphics2D.drawImage(tile[2].getImage(), 96, 0, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
 }

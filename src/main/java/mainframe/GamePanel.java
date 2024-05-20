@@ -9,14 +9,14 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
     // SCREEN SETTINGS
     final int originalTileSize = 16; // 16x16 tile default size of player character, tiles, etc
-    final double scale = 1.38; // scale tiles up to x times - can be edited later using drop down?
+    final double scale = 1.38; // scale tiles up to x times
 
     final int tileSize = (int)(originalTileSize * scale); // actual tile size
 
     final int maxScreenX = 16; // 4 by 3
     final int maxScreenY = 12;
-    final int screenWidth = tileSize * maxScreenX; // 768 pixels
-    final int screenHeight = tileSize * maxScreenY; // 576 pixels
+    final int screenWidth = tileSize * maxScreenX;
+    final int screenHeight = tileSize * maxScreenY;
 
     //SET GAME FRAMES PER SECOND
     float fps = 30f;
@@ -57,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
         long timer = 0;
         int drawCount = 0;
 
+        // Main Game Loop, which renders the game at the currently set FPS
         while (gameThread != null){
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
@@ -83,6 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
         player.update();
     }
 
+    // Draw the graphics
     public void paintComponent(Graphics OriginalGraphics) {
         super.paintComponent(OriginalGraphics);
 

@@ -5,7 +5,6 @@ import main.java.mainframe.KeyInput;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -26,6 +25,7 @@ public class Player extends Entity {
         setSpeed(4);
         setDirection("down");
 
+        // create character sprite
         try{
             setImage("up1", ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/player/player_up_1.png"))));
             setImage("up2", ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/main/resources/assets/player/player_up_2.png"))));
@@ -40,6 +40,7 @@ public class Player extends Entity {
         }
     }
 
+    // Update player movement and interactions depending on keypresses.
     public void update() {
         if(keyInput.upPressed || keyInput.downPressed || keyInput.leftPressed || keyInput.rightPressed) {
             if(keyInput.upPressed){
@@ -68,10 +69,8 @@ public class Player extends Entity {
         }
     }
 
+    // Draw Player Sprite
     public void draw(GamePanel gamePanel, Graphics2D graphics2D) {
-//        graphics2D.setColor(Color.white);
-//        graphics2D.fillRect(getX(), getY(), gamePanel.getTileSize(), gamePanel.getTileSize());
-
         BufferedImage image = null;
 
         switch(getDirection()){

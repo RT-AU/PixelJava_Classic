@@ -6,11 +6,7 @@ public class Tile {
 
     private BufferedImage image;
     private Boolean collision = false;
-
-
-
-
-
+    
     public void setCollision(Boolean collision) {
         this.collision = collision;
     }
